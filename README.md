@@ -1,2 +1,2 @@
 # xcache7
-Storing in memory of user variables. XCache functionality with PHP7/OPCache
+Storing user variables in memory. XCache functionality with PHP7/OPCache
