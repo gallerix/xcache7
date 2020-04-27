@@ -6,6 +6,7 @@ define('XCACHED', true);
 $xdir='/var/xcache/';
 
 function xcache_set($key, $val){
+    global $xdir;
     $key=strtr(trim($key), [' '=>'_', '#'=>'', '/'=>'--', '.'=>'']);
     $f=$xdir.substr($key,0,1);
     if(!is_dir($f)) mkdir($f);
@@ -16,12 +17,14 @@ function xcache_set($key, $val){
 }
 
 function xcache_isset($key){
+    global $xdir;
     $key=strtr(trim($key), [' '=>'-', '#'=>'', '/'=>'--']);
     $f=$xdir.substr($key,0,1);
     return is_file($f.'/'.$key.'.inc')? filemtime($f.'/'.$key.'.inc'):false;
 }
 
 function xcache_get($key, $Revalidate=false){
+    global $xdir;
     $key=strtr(trim($key), [' '=>'-', '#'=>'', '/'=>'--']);
     $f=$xdir.substr($key,0,1);
     if(!$Revalidate) @include $f.'/'.$key.'.inc';
@@ -30,12 +33,14 @@ function xcache_get($key, $Revalidate=false){
 }
 
 function xcache_unset($key){
+    global $xdir;
     $key=strtr(trim($key), [' '=>'-', '#'=>'', '/'=>'--']);
     $f=$xdir.substr($key,0,1);
     unlink($f.'/'.$key.'.inc');
 }
 
 function xcache_unset_by_prefix($key){
+    global $xdir;
     $key=strtr(trim($key), [' '=>'-', '#'=>'', '/'=>'--']);
     $f=$xdir.substr($key,0,1);
     exec('rm -rf '.$f.'/'.$key.'*');
