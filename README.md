@@ -25,7 +25,7 @@ xcache_get('any_var', true);
 ```
 You dont't need to check if variable exist, if not – *xcache_get* just return false.
 
-*xcache_isset* return file timestamp (variable last modofoed time) as success value.
+*xcache_isset* return file timestamp (variable last modified time) as success value.
 
 You may want to clean old data from disk sometimes. Kill all in the xcache folder or do something like this (add php script to crontab):
 ```
